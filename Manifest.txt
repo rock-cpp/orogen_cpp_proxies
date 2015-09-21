@@ -1,0 +1,11 @@
+.gemtest
+README.rdoc
+manifest.xml
+History.txt
+test/test_orogen_cpp_proxies.rb
+test/suite.rb
+Manifest.txt
+Rakefile
+lib/orogen_cpp_proxies/test.rb
+lib/orogen_cpp_proxies/base.rb
+lib/orogen_cpp_proxies.rb
