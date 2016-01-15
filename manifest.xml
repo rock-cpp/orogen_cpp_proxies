@@ -8,4 +8,5 @@
   <logo>http://</logo>
 
   <depend package="orogen" />
+  <depend package="tools/orocos_cpp_base" />
 </package>
