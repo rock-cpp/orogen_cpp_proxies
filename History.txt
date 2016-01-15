@@ -1,2 +1,0 @@
-===  / 2015-09-21
- * initial creation of package
