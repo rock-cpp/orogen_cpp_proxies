@@ -1,2 +1,4 @@
 *.sw?
 .yardoc
+build
+.kdev4
