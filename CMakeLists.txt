@@ -19,5 +19,5 @@ install(FILES ${PROJECT_SOURCE_DIR}/orogen/proxies/CMakeLists.txt
 
 install(FILES ${PROJECT_SOURCE_DIR}/orogen/orogen_plugin.rb
         DESTINATION ${CMAKE_INSTALL_PREFIX}/share/orogen/plugins
-        RENAME ccp_prxies_plugin.rb)
+        RENAME cpp_proxies_plugin.rb)
 
