@@ -10,6 +10,8 @@ add_definitions(-DRTT_COMPONENT)
 %>
 <%= Orocos::Generation.cmake_pkgconfig_require(pkg_conf_deps) %>
 
+include(<%= project.name %>TaskLib)
+
 ADD_LIBRARY(${PROXYLIB_NAME} SHARED 
 <%= 
    task_files = String.new
@@ -40,6 +42,11 @@ if(project.typekit)
 end
     result
 %>
+
+find_package(RTTPlugin COMPONENTS rtt-typekit rtt-transport-corba rtt-transport-mqueue)
+target_link_libraries(${PROXYLIB_NAME} ${RTT_PLUGIN_rtt-typekit_LIBRARY})
+target_link_libraries(${PROXYLIB_NAME} ${RTT_PLUGIN_rtt-transport-corba_LIBRARY})
+target_link_libraries(${PROXYLIB_NAME} ${RTT_PLUGIN_rtt-transport-mqueue_LIBRARY})
 
 <%= Orocos::Generation.cmake_pkgconfig_link('core', '${PROXYLIB_NAME}', pkg_conf_deps) %>
 

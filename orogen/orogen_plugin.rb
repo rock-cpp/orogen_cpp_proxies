@@ -31,6 +31,10 @@ module Orocos
                     end
                 end
                 project.used_typekits.each do |tk|
+                    if(tk.name == "orocos")
+                        next
+                    end
+                    
                     next if tk.name == "rtt"
                     next if tk.name == "logger"
                     result << BuildDependency.new(
@@ -54,6 +58,7 @@ module Orocos
                             in_context('core', 'link')
                 
                 result
+
             end
 
             # Generates the code associated with cpp proxies
