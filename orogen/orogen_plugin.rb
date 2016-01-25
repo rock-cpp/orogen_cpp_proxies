@@ -76,6 +76,10 @@ end
 
 class CPPProxyPlugin <  OroGen::Spec::TaskModelExtension
 
+    def initialize()
+        super("CPPProxyPlugin")
+    end
+
     # implement extension for task
     def pre_generation_hook(task)
 #         opName = "getExtendedStateMapping"
