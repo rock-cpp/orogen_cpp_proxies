@@ -109,6 +109,13 @@ class CPPProxyPlugin <  OroGen::Spec::TaskModelExtension
         yield "proxies"
     end
 
+    def registered_on(task_context)
+        #generate empty CMakeList as default
+        #this is needed, as the build is included
+        #even if no task is generated
+        Orocos::Generation.save_automatic('proxies', "CMakeLists.txt", "")
+    end
+
 end
 
 class OroGen::Spec::TaskContext
