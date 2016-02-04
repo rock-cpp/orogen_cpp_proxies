@@ -81,8 +81,11 @@ end
 
 class CPPProxyPlugin <  OroGen::Spec::TaskModelExtension
 
+    @hasTasks
+    
     def initialize()
         super("CPPProxyPlugin")
+        @hasTasks = false
     end
 
     # implement extension for task
@@ -107,20 +110,15 @@ class CPPProxyPlugin <  OroGen::Spec::TaskModelExtension
     def post_generation_hook(task)
         proxyGen = Orocos::Generation::CppProxyGeneration.new(task.project, task)
         proxyGen.generate()
+        @hasTasks = true
     end
     
     def each_auto_gen_source_directory(&block)
         return enum_for(:each_test) unless block_given?
-        yield "proxies"
+        if(@hasTasks)
+            yield "proxies"
+        end
     end
-
-    def registered_on(task_context)
-        #generate empty CMakeList as default
-        #this is needed, as the build is included
-        #even if no task is generated
-        Orocos::Generation.save_automatic('proxies', "CMakeLists.txt", "")
-    end
-
 end
 
 class OroGen::Spec::TaskContext
