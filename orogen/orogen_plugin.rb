@@ -125,7 +125,7 @@ class OroGen::Spec::TaskContext
     def cpp_proxies
         if !find_extension("CPPProxyPlugin")
             register_extension(CPPProxyPlugin.new)
-            puts("CPPProxyPlugin active")
+            #puts("CPPProxyPlugin active")
         end
     end
 end
