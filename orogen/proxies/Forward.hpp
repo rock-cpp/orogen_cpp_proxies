@@ -2,5 +2,8 @@
 
 namespace <%= project.name %>
 {
-    class <%= task.basename %>;
+    namespace proxies
+    {
+        class <%= task.basename %>;
+    }
 }
