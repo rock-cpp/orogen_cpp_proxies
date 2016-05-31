@@ -31,6 +31,8 @@ namespace <%= project.name %> {
 
 namespace proxies {
 
+const std::string <%= task.basename %>::ModelName("<%= task.basename %>::<%= task.basename %>");
+    
 <%= task.basename %>Initializer::<%= task.basename %>Initializer(std::string location, bool is_ior)
 :TaskContextProxy()
 {

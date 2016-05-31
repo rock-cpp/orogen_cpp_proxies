@@ -69,6 +69,9 @@ class <%= task.basename %> : public <%= task.basename %>Initializer
     protected:
 
     public:
+        
+        static const std::string ModelName;
+        
         /** TaskContext constructor for <%= task.basename %>
          * \param name Name of the task. This name needs to be unique to make it identifiable via nameservices.
          * \param initial_state The initial TaskState of the TaskContext. Default is Stopped state.
