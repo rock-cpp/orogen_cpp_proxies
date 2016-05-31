@@ -69,6 +69,9 @@ module Orocos
                 file_proxy_hpp = Generation.save_automatic("proxies", "#{task.basename}.hpp", proxy_hpp)
                 file_proxy_cpp = Generation.save_automatic("proxies", "#{task.basename}.cpp", proxy_cpp)
 
+                forward_hpp = Generation.render_template template_dir, "proxies", "Forward.hpp", binding
+                file_forward_hpp = Generation.save_automatic("proxies", "#{task.basename}Forward.hpp", forward_hpp)
+
                 cmake = Generation.render_template template_dir, 'proxies', 'CMakeLists.txt', binding
                 Generation.save_automatic('proxies', "CMakeLists.txt", cmake)
                 

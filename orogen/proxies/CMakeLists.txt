@@ -69,6 +69,7 @@ INSTALL(FILES
    include_files = String.new
    project.self_tasks.each do |task| 
      include_files << "    #{task.basename}.hpp\n"
+     include_files << "    #{task.basename}Forward.hpp\n"
    end
    include_files
 %>

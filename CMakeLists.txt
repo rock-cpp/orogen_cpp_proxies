@@ -11,6 +11,9 @@ install(FILES ${PROJECT_SOURCE_DIR}/orogen/proxies/Task.cpp
 install(FILES ${PROJECT_SOURCE_DIR}/orogen/proxies/Task.hpp
         DESTINATION ${CMAKE_INSTALL_PREFIX}/share/orogen/templates/proxies)
 
+install(FILES ${PROJECT_SOURCE_DIR}/orogen/proxies/Forward.hpp
+        DESTINATION ${CMAKE_INSTALL_PREFIX}/share/orogen/templates/proxies)
+
 install(FILES ${PROJECT_SOURCE_DIR}/orogen/proxies/proxies.pc
         DESTINATION ${CMAKE_INSTALL_PREFIX}/share/orogen/templates/proxies)
 
