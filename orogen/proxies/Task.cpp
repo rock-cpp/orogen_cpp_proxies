@@ -44,6 +44,15 @@ const std::string <%= task.basename %>::ModelName("<%= project.name %>::<%= task
     {
         throw std::runtime_error("Error : Failed to lookup task context " + location);
     }
+    
+    RTT::OperationInterfacePart *opIfac = getOperation("getModelName");
+    RTT::OperationCaller< ::std::string() >  caller(opIfac);
+    if(caller() != <%= task.basename %>::ModelName)
+    {
+        throw std::runtime_error("Error : Type mismatch in proxy-generation for " + location + 
+                                 ": Proxy was of type '" + <%= task.basename %>::ModelName + 
+                                 "' but task was of type '" + caller() + "'");
+    }
 }
 
 void <%= task.basename %>Initializer::initTypes()
