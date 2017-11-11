@@ -27,6 +27,22 @@
     <% end %>
 <% end %>
 
+<% my_used_types = [] %>
+<% task.self_ports.sort_by(&:name).each do |p| %>
+<%      my_used_types << p.type.cxx_name %>
+<% end %>
+
+<% types = task.self_dynamic_ports.
+        map { |p| [p.orocos_class, p.type] if p.type }.
+        compact %>
+<% types.each do |orocos_class, type| %>
+<%     my_used_types << type.cxx_name %>
+<% end %>
+<% my_used_types = my_used_types.uniq %>
+<% my_used_types.each do |t| %>
+INSTANCIATE_TYPE(<%= t %>)
+<% end %>
+
 namespace <%= project.name %> {
 
 namespace proxies {

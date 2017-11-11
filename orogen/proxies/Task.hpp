@@ -33,8 +33,7 @@ extern template class RTT::Attribute< <%= type.cxx_name %> >;
 <% task.self_ports.sort_by(&:name).each do |p| %>
 <%   type = p.type %>
 <%=  project.typekit.cxx_gen_includes(*project.typekit.include_for_type(type)) %>
-extern template class <%= p.orocos_class %>< <%= type.cxx_name %> >;
-extern template class RTT::base::ChannelElement< <%= type.cxx_name %> >;
+FW_DECLARE_TYPE(<%= type.cxx_name %>)
 <% end %>
 
 <% types = task.self_dynamic_ports.
@@ -42,8 +41,7 @@ extern template class RTT::base::ChannelElement< <%= type.cxx_name %> >;
         compact %>
 <% types.each do |orocos_class, type| %>
 <%=    project.typekit.cxx_gen_includes(*project.typekit.include_for_type(type)) %>
-extern template class <%= orocos_class %>< <%= type.cxx_name %> >;
-extern template class RTT::base::ChannelElement< <%= type.cxx_name %> >;
+FW_DECLARE_TYPE(<%= type.cxx_name %>)
 <% end %>
 
 <% task.self_operations.sort_by(&:name).each do |op| %>
