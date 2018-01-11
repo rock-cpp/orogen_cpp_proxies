@@ -20,11 +20,6 @@ ADD_LIBRARY(${PROXYLIB_NAME} SHARED
    end
    task_files
 %>)
-<% if project.typekit %>
-add_dependencies(${PROXYLIB_NAME}
-    regen-typekit)
-<% end %>
-
 
 <%= 
     result = ""
