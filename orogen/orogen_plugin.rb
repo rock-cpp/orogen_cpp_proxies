@@ -66,17 +66,17 @@ module Orocos
                 template_dir = File.join(File.dirname(__FILE__), "../templates")
                 proxy_hpp = Generation.render_template template_dir, "proxies", "Task.hpp", binding
                 proxy_cpp = Generation.render_template template_dir, "proxies", "Task.cpp", binding
-                file_proxy_hpp = Generation.save_automatic("proxies", "#{task.basename}.hpp", proxy_hpp)
-                file_proxy_cpp = Generation.save_automatic("proxies", "#{task.basename}.cpp", proxy_cpp)
+                file_proxy_hpp = Generation.save_automatic(project.name, "/proxies", "#{task.basename}.hpp", proxy_hpp)
+                file_proxy_cpp = Generation.save_automatic(project.name, "/proxies", "#{task.basename}.cpp", proxy_cpp)
 
                 forward_hpp = Generation.render_template template_dir, "proxies", "Forward.hpp", binding
-                file_forward_hpp = Generation.save_automatic("proxies", "#{task.basename}Forward.hpp", forward_hpp)
+                file_forward_hpp = Generation.save_automatic(project.name, "proxies", "#{task.basename}Forward.hpp", forward_hpp)
 
                 cmake = Generation.render_template template_dir, 'proxies', 'CMakeLists.txt', binding
-                Generation.save_automatic('proxies', "CMakeLists.txt", cmake)
+                Generation.save_automatic(project.name, 'proxies', "CMakeLists.txt", cmake)
                 
                 pc = Generation.render_template template_dir, "proxies", "proxies.pc", binding
-                Generation.save_automatic("proxies", "#{project.name}-proxies.pc.in", pc)
+                Generation.save_automatic(project.name, "proxies", "#{project.name}-proxies.pc.in", pc)
             end
         end
     end
@@ -85,7 +85,8 @@ end
 class CPPProxyPlugin <  OroGen::Spec::TaskModelExtension
 
     @hasTasks
-    
+    attr_reader :projectName
+
     def initialize()
         super("CPPProxyPlugin")
         @hasTasks = false
@@ -113,13 +114,14 @@ class CPPProxyPlugin <  OroGen::Spec::TaskModelExtension
     def post_generation_hook(task)
         proxyGen = Orocos::Generation::CppProxyGeneration.new(task.project, task)
         proxyGen.generate()
+        @projectName = task.project.name
         @hasTasks = true
     end
     
     def each_auto_gen_source_directory(&block)
         return enum_for(:each_test) unless block_given?
         if(@hasTasks)
-            yield "proxies"
+            yield @projectName + "/proxies"
         end
     end
 end
