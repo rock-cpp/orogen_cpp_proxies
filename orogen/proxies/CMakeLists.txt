@@ -26,12 +26,12 @@ ADD_LIBRARY(${PROXYLIB_NAME} SHARED
 if(project.typekit)
     tk = project.typekit
     result +=
-"target_link_libraries(${PROXYLIB_NAME} PRIVATE #{tk.name}-typekit-gnulinux)
+"target_link_libraries(${PROXYLIB_NAME} #{tk.name}-typekit-gnulinux)
 "
         
     project.enabled_transports.each do |transport_name|
     result +=
-"target_link_libraries(${PROXYLIB_NAME} PRIVATE #{tk.name}-transport-#{transport_name}-gnulinux)
+"target_link_libraries(${PROXYLIB_NAME} #{tk.name}-transport-#{transport_name}-gnulinux)
 "
     end
 end
@@ -39,9 +39,9 @@ end
 %>
 
 find_package(RTTPlugin COMPONENTS rtt-typekit rtt-transport-corba rtt-transport-mqueue)
-target_link_libraries(${PROXYLIB_NAME} PRIVATE ${RTT_PLUGIN_rtt-typekit_LIBRARY})
-target_link_libraries(${PROXYLIB_NAME} PRIVATE ${RTT_PLUGIN_rtt-transport-corba_LIBRARY})
-target_link_libraries(${PROXYLIB_NAME} PRIVATE ${RTT_PLUGIN_rtt-transport-mqueue_LIBRARY})
+target_link_libraries(${PROXYLIB_NAME} ${RTT_PLUGIN_rtt-typekit_LIBRARY})
+target_link_libraries(${PROXYLIB_NAME} ${RTT_PLUGIN_rtt-transport-corba_LIBRARY})
+target_link_libraries(${PROXYLIB_NAME} ${RTT_PLUGIN_rtt-transport-mqueue_LIBRARY})
 
 <%= Orocos::Generation.cmake_pkgconfig_link('core', '${PROXYLIB_NAME}', pkg_conf_deps) %>
 
