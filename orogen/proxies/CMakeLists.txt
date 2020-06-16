@@ -43,7 +43,9 @@ target_link_libraries(${PROXYLIB_NAME} PRIVATE ${RTT_PLUGIN_rtt-typekit_LIBRARY}
 target_link_libraries(${PROXYLIB_NAME} PRIVATE ${RTT_PLUGIN_rtt-transport-corba_LIBRARY})
 target_link_libraries(${PROXYLIB_NAME} PRIVATE ${RTT_PLUGIN_rtt-transport-mqueue_LIBRARY})
 
-<%= Orocos::Generation.cmake_pkgconfig_link('core', '${PROXYLIB_NAME}', pkg_conf_deps) %>
+<% Orocos::Generation.each_pkgconfig_link_dependency('core', pkg_conf_deps) do |dep| %>
+<%= "target_link_libraries(${PROXYLIB_NAME} PRIVATE #{dep})\n" %>
+<% end %>
 
 target_link_libraries(${PROXYLIB_NAME} INTERFACE ${<%= project.name.upcase %>_TASKLIB_INTERFACE_LIBRARIES})
 
