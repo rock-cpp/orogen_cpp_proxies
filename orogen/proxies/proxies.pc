@@ -30,8 +30,5 @@ Libs:  @RTT_PLUGIN_rtt-typekit_LIBRARY@ @RTT_PLUGIN_rtt-transport-corba_LIBRARY@
   cflags = project.tasklib_used_task_libraries.map { |tk| tk.pkg.raw_cflags if tk.pkg }.flatten.compact.to_set
   cflags |= project.used_typekits.map { |tk| tk.pkg.raw_cflags if tk.pkg }.flatten.compact.to_set
 %>
-<% if project.extended_state_support? %>
-<%   cflags << "-I${includedir}/#{project.name}/types" %>
-<% end %>
 Cflags: -I${includedir} <%= cflags.to_a.join(" ") %>
 
